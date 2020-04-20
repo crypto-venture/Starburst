@@ -26,9 +26,9 @@ class Header extends Component {
           //   </li>,
           <li key="3">
             {/* <a href="/api/logout">Logout</a> */}
-            <a href="">
+            <Link to="/signup">
               <button className="btn">Sign Up</button>
-            </a>
+            </Link>
           </li>,
         ];
     }
