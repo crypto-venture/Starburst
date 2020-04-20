@@ -21,23 +21,26 @@ export default ({
       {...props}
       style={{ marginBottom: '15px' }}
     /> */}
-    <form action="#">
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>File</span>
-          <input
-            type="file"
-            onChange={handleChange(onChange)}
-            onBlur={handleChange(onBlur)}
-            {...inputProps}
-            {...props}
-            style={{ marginBottom: '15px' }}
-          />
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" />
-        </div>
+    <div className="file-field input-field">
+      <div className="btn">
+        <span>File</span>
+        <input
+          type="file"
+          onChange={handleChange(onChange)}
+          onBlur={handleChange(onBlur)}
+          {...inputProps}
+          {...props}
+          accept="image/x-png,image/gif,image/jpeg"
+          style={{ marginBottom: '15px' }}
+        />
       </div>
-    </form>
+      <div className="file-path-wrapper">
+        <input
+          className="file-path validate"
+          type="text"
+          placeholder="Upload File"
+        />
+      </div>
+    </div>
   </div>
 );

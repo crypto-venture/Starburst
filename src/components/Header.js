@@ -21,13 +21,16 @@ class Header extends Component {
           <li key="2">
             <a href="">Ethereum</a>
           </li>,
+          <li key="3">
+            <a href="">XRP</a>
+          </li>,
           //   <li key="3" style={{ margin: '0 10px' }}>
           //     Credits: {this.props.auth.credits}
           //   </li>,
-          <li key="3">
+          <li key="4">
             {/* <a href="/api/logout">Logout</a> */}
-            <Link to="/signup">
-              <button className="btn">Sign Up</button>
+            <Link className="btn" to="/signup">
+              Sign Up
             </Link>
           </li>,
         ];
