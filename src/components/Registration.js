@@ -3,6 +3,8 @@ import { reduxForm, Field } from 'redux-form';
 import RegisterField from './Field.js';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
+import { connect } from 'react-redux';
+import { onSubmit } from '../actions';
 
 class Registration extends Component {
   render() {
@@ -14,15 +16,11 @@ class Registration extends Component {
     return (
       <div style={registerStyle}>
         <div className="row">
-          <div className="col s4 offset-s4">
+          <div className="col s8 offset-s2">
             <div className="card darken-1">
               <div className="card-content">
                 <span className="card-title center">Create your account</span>
-                <form
-                  onSubmit={this.props.handleSubmit(
-                    this.props.submitRegistration
-                  )}
-                >
+                <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
                   <Field
                     label="Email"
                     type="text"
@@ -96,6 +94,8 @@ function validate(values) {
   //   }
   return errors;
 }
+
+Registration = connect(null, { onSubmit })(Registration);
 
 //options object inside redux form helper
 export default reduxForm({
