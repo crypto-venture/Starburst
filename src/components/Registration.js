@@ -19,8 +19,8 @@ class Registration extends Component {
               <div className="card-content">
                 <span className="card-title center">Create your account</span>
                 <form
-                  onSubmit={this.props.handleSubmit((values) =>
-                    console.log(values)
+                  onSubmit={this.props.handleSubmit(
+                    this.props.submitRegistration
                   )}
                 >
                   <Field
