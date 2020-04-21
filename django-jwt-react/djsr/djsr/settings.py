@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import time
 from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7n8c2*y7w(^k3dzrr1%d^^qrp%s3le)7-yra%f!xykv8-2p0w$'
+SECRET_KEY = 'm%+#@343(5!s0(pjxjuxgf*&5j#j(b1dbqp5=@dexce)18hz61'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'rest_framework',
+    'corsheaders',
+
 ]
 
 REST_FRAMEWORK = {
@@ -75,6 +76,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+
+CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:3000',
 ]
 
 ROOT_URLCONF = 'djsr.urls'
@@ -149,4 +162,11 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = "authentication.CustomUser"
 
-
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 0,
+        }
+    },
+]
