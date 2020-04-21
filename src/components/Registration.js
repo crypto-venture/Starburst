@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import RegisterField from './Field.js';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { onSubmit } from '../actions';
 
@@ -10,7 +11,7 @@ class Registration extends Component {
   render() {
     const registerStyle = {
       paddingTop: 50,
-      //   textAlign: 'center',
+      paddingBottom: 50,
     };
 
     return (
@@ -57,7 +58,16 @@ class Registration extends Component {
                     name="bio"
                     component={TextArea}
                   />
-                  <button className="btn-flat teal white-text" type="submit">
+                  <Link to="/">
+                    <button className="red white-text btn-flat">
+                      Back
+                      <i className="material-icons right">keyboard_backspace</i>
+                    </button>
+                  </Link>
+                  <button
+                    className="right btn-flat green white-text"
+                    type="submit"
+                  >
                     Continue
                     <i className="material-icons right">done</i>
                   </button>
@@ -73,6 +83,16 @@ class Registration extends Component {
 
 function validate(values) {
   const errors = {};
+  const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  if (!re.test(values.email)) {
+    errors.email = 'Provided email is not valid.';
+  }
+
+  if (values.password !== values.re_password) {
+    errors.password = "Passwords don't match.";
+    errors.re_password = "Passwords don't match.";
+  }
 
   if (!values.username) {
     errors.username = 'Please provide a username.\n';
