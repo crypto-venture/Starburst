@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchDiscussions } from '../../actions';
 // import Discussion from './Discussion';
 
-const Dashboard = () => {
-  return (
-    <div>
-      {/* <Discussion /> */}
-      {/* <div className="fixed-action-btn">
-        {/* <Link to="/surveys/new" className="btn-floating btn-large red">
-          <i className="material-icons">add</i>
-        </Link> */}
-      {/* </div> */} */}
-    </div>
-  );
-};
+class Dashboard extends Component {
+  componentDidMount() {
+    this.props.fetchDiscussions();
+  }
 
-export default Dashboard;
+  render() {
+    return (
+      <div>
+        <p>{this.props.hello}</p>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps({ hello }) {
+  return { hello };
+}
+
+export default connect(mapStateToProps, { fetchDiscussions })(Dashboard);
