@@ -8,9 +8,7 @@ export const fetchUser = () => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const onSubmit = (values, history) => async (dispatch) => {
-  delete values["re_password"];
-  delete values["profile-pic"];
+export const onRegister = (values, history) => async (dispatch) => {
   console.log(values);
   //const res = await axios.post('http://localhost:8000/api/user/create', values);
   const res = await axios({
@@ -19,11 +17,31 @@ export const onSubmit = (values, history) => async (dispatch) => {
     data: qs.stringify({
       username: values['username'],
       password: values['password'],
-      email: values['email']
+      email: values['email'],
     }),
     headers: {
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-    }
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+    },
+  });
+  console.log(res);
+  //   history.push('/home');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const onLogin = (values, history) => async (dispatch) => {
+  console.log(values);
+  //const res = await axios.post('http://localhost:8000/api/user/create', values);
+  const res = await axios({
+    method: 'post',
+    url: 'http://127.0.0.1:8000/api/user/create',
+    data: qs.stringify({
+      username: values['username'],
+      password: values['password'],
+      email: values['email'],
+    }),
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+    },
   });
   console.log(res);
   //   history.push('/home');

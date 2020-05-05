@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import LoginField from './Field.js';
+import { onLogin } from '../actions';
 
 class Login extends Component {
   render() {
@@ -16,11 +18,7 @@ class Login extends Component {
             <div className="card darken-1">
               <div className="card-content">
                 <span className="card-title">Sign in</span>
-                <form
-                  onSubmit={this.props.handleSubmit((values) =>
-                    console.log(values)
-                  )}
-                >
+                <form onSubmit={this.props.handleSubmit(this.props.onLogin)}>
                   <Field
                     label="Username"
                     type="text"
@@ -58,6 +56,8 @@ function validate(values) {
   }
   return errors;
 }
+
+Login = connect(null, { onLogin })(Login);
 
 //options object inside redux form helper
 export default reduxForm({
