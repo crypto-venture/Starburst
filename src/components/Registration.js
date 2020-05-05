@@ -5,7 +5,7 @@ import FileInput from './FileInput';
 import TextArea from './TextArea';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { onSubmit } from '../actions';
+import { onRegister } from '../actions';
 
 class Registration extends Component {
   render() {
@@ -21,7 +21,7 @@ class Registration extends Component {
             <div className="card darken-1">
               <div className="card-content">
                 <span className="card-title center">Create your account</span>
-                <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+                <form onSubmit={this.props.handleSubmit(this.props.onRegister)}>
                   <Field
                     label="Email"
                     type="text"
@@ -115,7 +115,7 @@ function validate(values) {
   return errors;
 }
 
-Registration = connect(null, { onSubmit })(Registration);
+Registration = connect(null, { onRegister })(Registration);
 
 //options object inside redux form helper
 export default reduxForm({
