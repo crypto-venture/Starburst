@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchDiscussions } from '../../actions';
+import { fetchDiscussions } from '../actions';
 // import Discussion from './Discussion';
 
 class Dashboard extends Component {

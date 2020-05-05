@@ -50,7 +50,7 @@ export const onLogin = (values, history) => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const fetchSurveys = () => async (dispatch) => {
+export const fetchDiscussions = () => async (dispatch) => {
   const res = await axios({
     method: 'get',
     url: 'http://127.0.0.1:8000/api/hello',
