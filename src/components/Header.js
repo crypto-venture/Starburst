@@ -6,11 +6,11 @@ class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return;
-      case false:
         return (
           <li>
-            <a href="/signup">Sign up</a>
+            <Link className="btn" to="/signup">
+              Sign Up
+            </Link>
           </li>
         );
       default:
@@ -22,16 +22,16 @@ class Header extends Component {
             <a href="">Ethereum</a>
           </li>,
           <li key="3">
-            <a href="">XRP</a>
+            <Link to="/profile">My Profile</Link>
           </li>,
           //   <li key="3" style={{ margin: '0 10px' }}>
           //     Credits: {this.props.auth.credits}
           //   </li>,
           <li key="4">
-            {/* <a href="/api/logout">Logout</a> */}
-            <Link className="btn" to="/signup">
+            <a href="/api/logout">Logout</a>
+            {/* <Link className="btn" to="/signup">
               Sign Up
-            </Link>
+            </Link> */}
           </li>,
         ];
     }
@@ -46,7 +46,7 @@ class Header extends Component {
             className="left brand-logo"
             style={{ margin: '0 10px' }}
           >
-            <span>
+            <span style={{ fontFamily: 'Permanent Marker' }}>
               Crypto Venture
               <i className="large material-icons">monetization_on</i>
             </span>

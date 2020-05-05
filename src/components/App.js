@@ -6,12 +6,12 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Registration from './Registration';
-// import Profile from './Profile';
+import Profile from './Profile';
 
 class App extends Component {
-  //   componentDidMount() {
-  //     this.props.fetchUser();
-  //   }
+  componentDidMount() {
+    this.props.fetchUser();
+  }
 
   render() {
     return (
@@ -22,6 +22,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Dashboard} />
             <Route path="/signup" component={Registration} />
+            <Route exact path="/profile" component={Profile} />
           </div>
         </BrowserRouter>
       </div>

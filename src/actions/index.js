@@ -3,7 +3,18 @@ import qs from 'qs';
 import { FETCH_USER, HELLO } from './types';
 
 export const fetchUser = () => async (dispatch) => {
-  const res = await axios.get('/api/current_user');
+  //const res = await axios.get('/api/current_user');
+
+  const res = await axios({
+    method: 'get',
+    url: 'http://127.0.0.1:8000/api/user/current',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+    },
+  });
+
+  console.log(res);
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
