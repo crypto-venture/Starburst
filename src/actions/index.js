@@ -33,11 +33,10 @@ export const onLogin = (values, history) => async (dispatch) => {
   //const res = await axios.post('http://localhost:8000/api/user/create', values);
   const res = await axios({
     method: 'post',
-    url: 'http://127.0.0.1:8000/api/user/create',
+    url: 'http://127.0.0.1:8000/api/token/obtain',
     data: qs.stringify({
       username: values['username'],
       password: values['password'],
-      email: values['email'],
     }),
     headers: {
       'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
