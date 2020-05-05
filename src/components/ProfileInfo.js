@@ -4,9 +4,8 @@ import { reduxForm, Field } from 'redux-form';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
 import M from 'materialize-css';
-import ProfileInfo from './ProfileInfo';
 
-class Profile extends Component {
+class ProfileInfo extends Component {
   componentDidMount() {
     // Auto initialize all the things!
     M.AutoInit();
@@ -36,7 +35,7 @@ class Profile extends Component {
 
   render() {
     const registerStyle = {
-      paddingTop: 50,
+      paddingTop: 0,
       paddingBottom: 50,
     };
 
@@ -44,44 +43,33 @@ class Profile extends Component {
       <div className="col s12 m8 offset-m2 l6 offset-l3" style={registerStyle}>
         <div className="card-panel grey lighten-5 z-depth-1">
           <div className="row valign-wrapper">
-            <div className="col s2">
-              <img
-                src={require('../images/swag.jpg')}
-                alt=""
-                className="circle responsive-img"
-              ></img>
-            </div>
-            <div className="col s9">
-              <span className="black-text">
-                Hi! My name is Bobby and I am a swag boy. I have a hat that says
-                DOPE.
-              </span>
-            </div>
-            <div className="col s1">
-              <a
-                className="btn-floating btn-large waves-light red modal-trigger"
-                href="#modal1"
-              >
-                <i className="material-icons">edit</i>
+            <div className="col s12">
+              <h4>Email</h4>
+              <p>john.doe@gmail.com</p>
+              <h4>Username</h4>
+              <p>bobby_swag</p>
+              <h4>Password</h4>
+              <p>********</p>
+              <a className="btn waves-light modal-trigger" href="#modal2">
+                Edit Profile
               </a>
-              <div id="modal1" className="modal">
+              <div id="modal2" className="modal">
                 <div class="modal-content">
-                  <h4>Edit Bio & Picture</h4>
+                  <h4>Edit Profile Information</h4>
                   {this.renderModal()}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <ProfileInfo />
       </div>
     );
   }
 }
 
-// Profile = connect(null, { onRegister })(withRouter(Profile));
+// ProfileInfo = connect(null, { onRegister })(withRouter(ProfileInfo));
 
 //options object inside redux form helper
 export default reduxForm({
-  form: 'BioPictureForm',
-})(Profile);
+  form: 'ProfileInfoForm',
+})(ProfileInfo);
