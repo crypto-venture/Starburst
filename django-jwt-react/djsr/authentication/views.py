@@ -26,7 +26,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
-
+    
     def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
@@ -36,3 +36,21 @@ class CustomUserCreate(APIView):
                 json['id'] = user.id
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ReturnedUser(APIView):
+    # permission_classes = (permissions.AllowAny,)
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "username" : user.username,
+            "email" : user.email,
+            "bio" : user.bio,
+            "id" : user.id
+            })
+
+class HelloWorld(APIView):
+    def get(self, request):
+        return Response({
+            "hello" : "world"
+            })
