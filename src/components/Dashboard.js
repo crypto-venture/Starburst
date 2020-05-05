@@ -10,9 +10,10 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
-        <p>{this.props.hello}</p>
+        <p>Hey there!</p>
       </div>
     );
   }

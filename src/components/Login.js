@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import LoginField from './Field.js';
+import { withRouter } from 'react-router-dom';
 import { onLogin } from '../actions';
 
 class Login extends Component {
@@ -18,7 +19,12 @@ class Login extends Component {
             <div className="card darken-1">
               <div className="card-content">
                 <span className="card-title">Sign in</span>
-                <form onSubmit={this.props.handleSubmit(this.props.onLogin)}>
+                <form
+                  onSubmit={this.props.handleSubmit((values) => {
+                    const history = this.props.history;
+                    this.props.onLogin(values, history);
+                  })}
+                >
                   <Field
                     label="Username"
                     type="text"
@@ -57,7 +63,7 @@ function validate(values) {
   return errors;
 }
 
-Login = connect(null, { onLogin })(Login);
+Login = connect(null, { onLogin })(withRouter(Login));
 
 //options object inside redux form helper
 export default reduxForm({

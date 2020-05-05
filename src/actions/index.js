@@ -24,7 +24,7 @@ export const onRegister = (values, history) => async (dispatch) => {
     },
   });
   console.log(res);
-  history.push('/login');
+  history.push('/');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
