@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import RegisterField from './Field.js';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { onRegister } from '../actions';
 
@@ -22,9 +22,10 @@ class Registration extends Component {
               <div className="card-content">
                 <span className="card-title center">Create your account</span>
                 <form
-                  onSubmit={this.props.handleSubmit((values, history) =>
-                    this.props.onRegister(values, history)
-                  )}
+                  onSubmit={this.props.handleSubmit((values) => {
+                    const history = this.props.history;
+                    this.props.onRegister(values, history);
+                  })}
                 >
                   <Field
                     label="Email"
@@ -119,7 +120,7 @@ function validate(values) {
   return errors;
 }
 
-Registration = connect(null, { onRegister })(Registration);
+Registration = connect(null, { onRegister })(withRouter(Registration));
 
 //options object inside redux form helper
 export default reduxForm({
