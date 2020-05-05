@@ -42,6 +42,8 @@ export const onLogin = (values, history) => async (dispatch) => {
       'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
     },
   });
+  localStorage.setItem('access_token', res.data.access);
+  localStorage.setItem('refresh_token', res.data.refresh);
   console.log(res);
   //   history.push('/home');
   dispatch({ type: FETCH_USER, payload: res.data });
