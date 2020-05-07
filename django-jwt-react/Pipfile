@@ -11,6 +11,10 @@ djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 django-cors-headers = "*"
 pillow = "*"
+numpy = "*"
+pandas = "*"
+sklearn = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
