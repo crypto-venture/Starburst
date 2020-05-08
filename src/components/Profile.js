@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
@@ -65,7 +65,7 @@ class Profile extends Component {
                 <i className="material-icons">edit</i>
               </a>
               <div id="modal1" className="modal">
-                <div class="modal-content">
+                <div className="modal-content">
                   <h4>Edit Bio & Picture</h4>
                   {this.renderModal()}
                 </div>

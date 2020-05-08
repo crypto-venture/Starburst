@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import M from 'materialize-css';
 
 class Header extends Component {
   renderContent() {
@@ -15,45 +14,41 @@ class Header extends Component {
           </li>
         );
       default:
-        return [
-          <li key="1">
-            <a href="">Bitcoin</a>
-          </li>,
-          <li key="2">
-            <a href="">Ethereum</a>
-          </li>,
-          <li key="3">
-            <Link to="/profile">
-              <i className="small material-icons left">person</i>Profile
-            </Link>
-          </li>,
-          // //   <li key="3" style={{ margin: '0 10px' }}>
-          // //     Credits: {this.props.auth.credits}
-          // //   </li>,
-          <li key="4">
-            <a className="btn" href="/api/logout">
-              Log out
-            </a>
-          </li>,
-        ];
+        if (this.props.auth.access) {
+          return [
+            <li key="1">
+              <a href="/btc">Bitcoin</a>
+            </li>,
+            <li key="2">
+              <a href="/eth">Ethereum</a>
+            </li>,
+            <li key="3">
+              <Link to="/profile">
+                <i className="small material-icons left">person</i>Profile
+              </Link>
+            </li>,
+            <li key="4">
+              <a className="btn" href="/api/logout">
+                Log out
+              </a>
+            </li>,
+          ];
+        } else {
+          return (
+            <li>
+              <Link className="btn" to="/signup">
+                Sign Up
+              </Link>
+            </li>
+          );
+        }
     }
   }
 
   render() {
+    console.log(this.props.auth);
     return (
       <div>
-        <ul id="dropdown1" className="dropdown-content">
-          <li>
-            <a href="#!">one</a>
-          </li>
-          <li>
-            <a href="#!">two</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#!">three</a>
-          </li>
-        </ul>
         <nav>
           <div className="nav-wrapper">
             <Link
