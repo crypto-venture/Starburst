@@ -7,6 +7,8 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Registration from './Registration';
 import Profile from './Profile';
+import Bitcoin from './Bitcoin';
+import Ethereum from './Ethereum';
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +25,8 @@ class App extends Component {
             <Route exact path="/home" component={Dashboard} />
             <Route path="/signup" component={Registration} />
             <Route exact path="/profile" component={Profile} />
+            <Route path="/btc" component={Bitcoin} />
+            <Route path="/eth" component={Ethereum} />
           </div>
         </BrowserRouter>
       </div>
