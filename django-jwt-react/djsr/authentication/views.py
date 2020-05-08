@@ -70,7 +70,7 @@ class BTCPredictions(APIView):
             model = pickle.load(pickle_file)
 
         endpoint = 'https://min-api.cryptocompare.com/data/histohour'
-        res = requests.get(endpoint + '?fsym=BTC&tsym=USD&limit=10')
+        res = requests.get(endpoint + '?fsym=BTC&tsym=USD&limit=100')
 
         df = pd.DataFrame(json.loads(res.content)['Data'])
         df = df.set_index('time')
@@ -113,7 +113,7 @@ class ETHPredictions(APIView):
     def get(self, request):
         filename = 'finalized_model.sav'
         with open(os.path.join(settings.BASE_DIR, filename), 'rb') as pickle_file:
-            model = pickle.load(pickle_file)
+            model = pickle.load(pickle_file, compile=False)
 
         endpoint = 'https://min-api.cryptocompare.com/data/histohour'
         res = requests.get(endpoint + '?fsym=ETH&tsym=USD&limit=10')
@@ -147,6 +147,7 @@ class ETHPredictions(APIView):
                           index=future_dates[-n_input:].index, columns=['Prediction'])
 
         prediction = df_predict.to_dict()
+        print(prediction)
         finalDict = {}
         for k in list(prediction['Prediction'].keys()):
             finalDict[str(k)] = prediction['Prediction'][k]
