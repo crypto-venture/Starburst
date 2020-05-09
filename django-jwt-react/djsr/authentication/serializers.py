@@ -10,7 +10,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         required=True
     )
     username = serializers.CharField(required=True)
-    password = serializers.CharField(min_length=8, write_only=True, required=True)
+    password = serializers.CharField(min_length=1, write_only=True, required=True)
     bio = serializers.CharField(required=False)
 
     class Meta:
