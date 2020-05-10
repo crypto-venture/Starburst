@@ -17,10 +17,7 @@ class Header extends Component {
         if (this.props.auth.access) {
           return [
             <li key="1">
-              <a href="/btc">Bitcoin</a>
-            </li>,
-            <li key="2">
-              <a href="/eth">Ethereum</a>
+              <Link to="/btc">Bitcoin</Link>
             </li>,
             <li key="3">
               <Link to="/profile">

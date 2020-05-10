@@ -4,6 +4,7 @@ import './Bitcoin.css';
 import LineChart from './LineChartBTC';
 import ToolTip from './ToolTip';
 import InfoBox from './InfoBox';
+import Authenticator from './Authenticator';
 
 class Bitcoin extends Component {
   constructor(props) {
@@ -56,6 +57,36 @@ class Bitcoin extends Component {
     getData();
   }
 
+  renderOracle() {
+    return (
+      <div className="card darken-1">
+        <div className="card-content">
+          <span className="card-title center">The Prophecy</span>
+          <p className="center" style={{ paddingBottom: 30 }}>
+            Our Predicted BTC Price for the next 5 hours
+          </p>
+          <div className="row">
+            <div className="col s1 offset-s1">
+              <button className="btn">One!!!</button>
+            </div>
+            <div className="col s1 offset-s1">
+              <button className="btn">Two!!!</button>
+            </div>
+            <div className="col s1 offset-s1">
+              <button className="btn">Three!!!</button>
+            </div>
+            <div className="col s1 offset-s1">
+              <button className="btn">Four!!!</button>
+            </div>
+            <div className="col s1 offset-s1">
+              <button className="btn">Five!!!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const registerStyle = {
       paddingTop: 20,
@@ -70,15 +101,12 @@ class Bitcoin extends Component {
               <span className="card-title center">BTCUSD</span>
               <p className="center">Bitcoin 30 Day Price Chart</p>
               <div className="container">
-                <div className="row">
-                  {/* <h1>30 Day Bitcoin Price Chart</h1> */}
-                </div>
-                <div className="row">
+                <div className="row1">
                   {!this.state.fetchingData ? (
                     <InfoBox data={this.state.data} />
                   ) : null}
                 </div>
-                <div className="row">
+                <div className="row1">
                   <div className="popup">
                     {this.state.hoverLoc ? (
                       <ToolTip
@@ -88,7 +116,7 @@ class Bitcoin extends Component {
                     ) : null}
                   </div>
                 </div>
-                <div className="row">
+                <div className="row1">
                   <div className="chart">
                     {!this.state.fetchingData ? (
                       <LineChart
@@ -98,7 +126,7 @@ class Bitcoin extends Component {
                     ) : null}
                   </div>
                 </div>
-                <div className="row">
+                <div className="row1">
                   <div id="coindesk">
                     {' '}
                     Powered by{' '}
@@ -108,6 +136,7 @@ class Bitcoin extends Component {
               </div>
             </div>
           </div>
+          {this.renderOracle()}
         </div>
       </div>
     );
