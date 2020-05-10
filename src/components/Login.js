@@ -8,7 +8,7 @@ import { onLogin } from '../actions';
 class Login extends Component {
   render() {
     const loginStyle = {
-      paddingTop: 50,
+      paddingTop: 35,
       //   textAlign: 'center',
     };
 

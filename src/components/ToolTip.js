@@ -11,7 +11,7 @@ class ToolTip extends Component {
     let placementStyles = {};
     let width = 100;
     placementStyles.width = width + 'px';
-    placementStyles.left = hoverLoc + svgLocation.left - width / 2;
+    placementStyles.left = hoverLoc + 45 - width / 2;
 
     return (
       <div className="hover" style={placementStyles}>

@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Registration from './Registration';
 import Profile from './Profile';
 import Bitcoin from './Bitcoin';
-import Ethereum from './Ethereum';
+import Error from './Error';
+import { onLogin } from '../actions';
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      localStorage.getItem('access_token') ? (
+        // Component is passed React router props : location, match, history
+        <Component {...props} />
+      ) : (
+        <Redirect to="/error" />
+      )
+    }
+  />
+);
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
   render() {
     return (
       <div className="container">
@@ -24,9 +34,9 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Dashboard} />
             <Route path="/signup" component={Registration} />
-            <Route exact path="/profile" component={Profile} />
-            <Route path="/btc" component={Bitcoin} />
-            <Route path="/eth" component={Ethereum} />
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute path="/btc" component={Bitcoin} />
+            <Route path="/error" component={Error} />
           </div>
         </BrowserRouter>
       </div>
@@ -34,4 +44,10 @@ class App extends Component {
   }
 }
 
-export default connect(null, actions)(App);
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+connect(mapStateToProps, { onLogin })(PrivateRoute);
+
+export default App;
