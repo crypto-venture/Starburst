@@ -13,6 +13,10 @@ This makes sure that all dependencies are installed on your system
 
 Brings you to the virtual enviornment's shell
 
-`python djsr/manage.py runserver`
+`python keras/setup.py install`
 
-Will start the server
+Makes sure keras is installed
+
+`python djsr/manage.py runserver --nothreading`
+
+Will start the server, without threads, this is essential for correctly running the srver without Keras induced errors

@@ -68,9 +68,8 @@ class BTCPredictions(APIView):
         filename = 'finalized_model.sav'
         with open(os.path.join(settings.BASE_DIR, filename), 'rb') as pickle_file:
             model = pickle.load(pickle_file)
-
         endpoint = 'https://min-api.cryptocompare.com/data/histohour'
-        res = requests.get(endpoint + '?fsym=BTC&tsym=USD&limit=100')
+        res = requests.get(endpoint + '?fsym=BTC&tsym=USD&limit=80')
 
         df = pd.DataFrame(json.loads(res.content)['Data'])
         df = df.set_index('time')

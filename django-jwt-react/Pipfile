@@ -15,6 +15,7 @@ numpy = "*"
 pandas = "*"
 sklearn = "*"
 requests = "*"
+tensorflow = "*"
 
 [requires]
 python_version = "3.7"

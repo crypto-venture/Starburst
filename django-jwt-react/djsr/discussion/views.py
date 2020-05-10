@@ -36,7 +36,7 @@ class PostDetail(APIView):
 		post = queryset[0]
 		serialized_post = json.loads(serializers.serialize('json', [ post, ]))
 		serialized_post[0]['fields']['author'] = CustomUser.objects.filter(id=serialized_post[0]['fields']['author']).values()[0]['username']
-		return Response(serialized_post, status=status.HTTP_201_CREATED)
+		return Response(serialized_post, status=status.HTTP_200_OK)
 
 class CreatePost(APIView):
 	def post(self, request):
@@ -47,3 +47,32 @@ class CreatePost(APIView):
 		del serialized_post[0]['fields']['author']
 		serialized_post[0]['fields']['author'] = user.username
 		return Response(serialized_post, status=status.HTTP_201_CREATED)
+
+class UserReactionView(APIView):
+	def post(self, request):
+		data = request.data
+		user = request.user
+		try:
+			like = request.data['like']
+		except KeyError as e:
+			return Response({
+				'Error' : 'like not found'
+				}, status=status.HTTP_400_BAD_REQUEST)
+		post = list(Post.objects.filter(id=data['id']))
+		post = post[0]
+		post_user_reactions = post.users_reaction.all()
+		if user not in post_user_reactions and int(like) == 1:
+			post.likes += 1
+			post.users_reaction.add(user)
+			post.save()
+		if user in post_user_reactions and int(like) == 0:
+			post.likes -= 1
+			post.users_reaction.remove(user)
+			post.save()
+		serialized_post = json.loads(serializers.serialize('json', [ post, ]))
+		del serialized_post[0]['fields']['author']
+		serialized_post[0]['fields']['author'] = user.username
+		return Response(serialized_post, status=status.HTTP_200_OK)
+
+
+

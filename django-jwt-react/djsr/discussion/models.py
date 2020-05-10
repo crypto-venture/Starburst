@@ -7,6 +7,8 @@ class Post(models.Model):
 	content = models.TextField()
 	author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='blog_posts')
 	created_on = models.DateTimeField(auto_now=True)
+	likes = models.IntegerField(default=0)
+	users_reaction = models.ManyToManyField(CustomUser, blank=True)
 
 	class Meta:
 		ordering = ['-created_on']
