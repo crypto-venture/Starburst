@@ -4,7 +4,7 @@ import './Bitcoin.css';
 import LineChart from './LineChartBTC';
 import ToolTip from './ToolTip';
 import InfoBox from './InfoBox';
-import Authenticator from './Authenticator';
+import Price from './Price';
 
 class Bitcoin extends Component {
   constructor(props) {
@@ -82,6 +82,7 @@ class Bitcoin extends Component {
               <button className="btn">Five!!!</button>
             </div>
           </div>
+          <Price />
         </div>
       </div>
     );

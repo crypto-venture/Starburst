@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import { FETCH_USER, HELLO } from './types';
+import { FETCH_USER, PRICES } from './types';
 
 export const fetchUser = () => async (dispatch) => {
   //const res = await axios.get('/api/current_user');
@@ -61,15 +61,15 @@ export const onLogin = (values, history) => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const fetchDiscussions = () => async (dispatch) => {
+export const fetchPrices = () => async (dispatch) => {
   const res = await axios({
     method: 'get',
-    url: 'http://127.0.0.1:8000/api/hello',
+    url: 'http://127.0.0.1:8000/api/btc',
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('access_token'),
       'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
     },
   });
 
-  dispatch({ type: HELLO, payload: res.data });
+  dispatch({ type: PRICES, payload: res.data });
 };

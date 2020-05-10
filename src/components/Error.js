@@ -22,7 +22,10 @@ class Error extends Component {
               className="circle responsive-img"
             ></img>
             <p className="center">
-              Thank you Professor Ghofraniha for an eventful semester! 🤓
+              Thank you Professor Ghofraniha for an eventful semester!{' '}
+              <span role="img" aria-label="jsx-a11y/accessible-emoji">
+                🤓
+              </span>
             </p>
             <h4 style={{ paddingBottom: -20 }}>Please Sign-in again.</h4>
             <Login />
