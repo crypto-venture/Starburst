@@ -159,7 +159,7 @@ class LineChartBTC extends Component {
 
     let svgData = [];
     data.map((point, i) => {
-      svgData.push({
+      return svgData.push({
         svgX: this.getSvgX(point.x),
         svgY: this.getSvgY(point.y),
         d: point.d,

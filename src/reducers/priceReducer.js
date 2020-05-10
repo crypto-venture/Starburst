@@ -1,0 +1,10 @@
+import { PRICES } from '../actions/types';
+
+export default function (state = [], action) {
+  switch (action.type) {
+    case PRICES:
+      return action.payload;
+    default:
+      return state;
+  }
+}
