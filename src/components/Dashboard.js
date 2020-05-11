@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import { fetchDiscussions } from '../actions';
-// import Discussion from './Discussion';
+import Discussion from './Discussion';
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
-        <p>Hey there!</p>
+        <Discussion />
+        <div className="fixed-action-btn">
+          <Link to="/discussions/create" className="btn-floating btn-large red">
+            <i className="material-icons">add</i>
+          </Link>
+        </div>
       </div>
     );
   }
 }
 
 export default Dashboard;
-// function mapStateToProps({ hello }) {
-//   return { hello };
-// }
-
-// export default connect(mapStateToProps, { fetchDiscussions })(Dashboard);

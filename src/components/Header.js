@@ -21,7 +21,8 @@ class Header extends Component {
             </li>,
             <li key="3">
               <Link to="/profile">
-                <i className="small material-icons left">person</i>Profile
+                <i className="small material-icons left">person</i>
+                {this.props.auth.username}
               </Link>
             </li>,
             <li key="4">

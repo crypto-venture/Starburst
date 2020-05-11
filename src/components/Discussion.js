@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { fetchDiscussions } from '../actions';
+import { fetchDiscussions } from '../actions';
 
 class Discussion extends Component {
-  //   componentDidMount() {
-  //     this.props.fetchDiscussions();
-  //   }
+  componentDidMount() {
+    this.props.fetchDiscussions();
+  }
 
-  renderSurveys() {
-    return this.props.surveys.reverse().map((survey) => {
+  renderDiscussions() {
+    return this.props.discussions.map((discussion) => {
       return (
-        <div className="card darken-1" key={survey._id}>
+        <div className="card darken-1" key={discussion.id}>
           <div className="card-content">
-            <span className="card-title">{survey.title}</span>
-            <p>{survey.body}</p>
+            <span className="card-title">{discussion.title}</span>
+            <p>{discussion.content}</p>
             <p className="right">
-              Sent On: {new Date(survey.dateSent).toLocaleDateString()}
+              Created On: {new Date(discussion.created_on).toLocaleDateString()}
             </p>
           </div>
           <div className="card-action">
-            <a>Yes: {survey.yes}</a>
-            <a>No: {survey.no}</a>
+            <a>Likes: {discussion.likes}</a>
+            <button className="blue btn">
+              Like<i className="small material-icons right">thumb_up</i>
+            </button>
+            <a className="right">By: {discussion.author}</a>
           </div>
         </div>
       );
@@ -28,12 +31,16 @@ class Discussion extends Component {
   }
 
   render() {
-    return <div>A discussion.</div>;
+    const registerStyle = {
+      paddingTop: 20,
+      paddingBottom: 20,
+    };
+    return <div style={registerStyle}>{this.renderDiscussions()}</div>;
   }
 }
 
-function mapStateToProps({ surveys }) {
-  return { surveys };
+function mapStateToProps({ discussions }) {
+  return { discussions };
 }
 
-export default connect(mapStateToProps)(Discussion);
+export default connect(mapStateToProps, { fetchDiscussions })(Discussion);

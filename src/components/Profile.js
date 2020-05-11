@@ -36,8 +36,8 @@ class Profile extends Component {
 
   render() {
     const registerStyle = {
-      paddingTop: 50,
-      paddingBottom: 50,
+      paddingTop: 20,
+      paddingBottom: 20,
     };
 
     return (

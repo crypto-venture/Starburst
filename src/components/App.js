@@ -8,7 +8,8 @@ import Registration from './Registration';
 import Profile from './Profile';
 import Bitcoin from './Bitcoin';
 import Error from './Error';
-import { onLogin } from '../actions';
+import CreateDiscussion from './CreateDiscussion';
+import { onLogin, fetchUser } from '../actions';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -25,6 +26,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div className="container">
@@ -32,7 +37,12 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/home" component={Dashboard} />
+            <PrivateRoute exact path="/home" component={Dashboard} />
+            <PrivateRoute
+              exact
+              path="/discussions/create"
+              component={CreateDiscussion}
+            />
             <Route path="/signup" component={Registration} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute path="/btc" component={Bitcoin} />
@@ -48,6 +58,6 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-connect(mapStateToProps, { onLogin })(PrivateRoute);
+// connect(mapStateToProps, { onLogin })(PrivateRoute);
 
-export default App;
+export default connect(mapStateToProps, { fetchUser })(App);
