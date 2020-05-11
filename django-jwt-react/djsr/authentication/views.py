@@ -109,7 +109,7 @@ class BTCPredictions(APIView):
 
         for k in list(prediction['Prediction'].keys()):
             newK = k.to_pydatetime()
-            newK = newK.astimezone(to_zone).strftime('%I %p')
+            newK = newK.astimezone(to_zone).strftime('%-I%p')
             finalDict[newK] = '%.2f'%prediction['Prediction'][k]
 
         return JsonResponse(finalDict, status=status.HTTP_200_OK)
