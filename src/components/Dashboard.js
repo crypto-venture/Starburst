@@ -8,6 +8,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
+        <h4 className="center">Discussion Feed</h4>
         <Discussion />
         <div className="fixed-action-btn">
           <Link to="/discussions/create" className="btn-floating btn-large red">
