@@ -65,23 +65,6 @@ class Bitcoin extends Component {
           <p className="center" style={{ paddingBottom: 30 }}>
             Our Predicted BTC Price for the next 5 hours
           </p>
-          <div className="row">
-            <div className="col s1 offset-s1">
-              <button className="btn">One!!!</button>
-            </div>
-            <div className="col s1 offset-s1">
-              <button className="btn">Two!!!</button>
-            </div>
-            <div className="col s1 offset-s1">
-              <button className="btn">Three!!!</button>
-            </div>
-            <div className="col s1 offset-s1">
-              <button className="btn">Four!!!</button>
-            </div>
-            <div className="col s1 offset-s1">
-              <button className="btn">Five!!!</button>
-            </div>
-          </div>
           <Price />
         </div>
       </div>
@@ -99,7 +82,9 @@ class Bitcoin extends Component {
         <div style={registerStyle}>
           <div className="card blue-grey darken-1">
             <div className="card-content white-text">
-              <span className="card-title center">BTCUSD</span>
+              <span className="card-title center amber-text lighten-2">
+                BTCUSD
+              </span>
               <p className="center">Bitcoin 30 Day Price Chart</p>
               <div className="container">
                 <div className="row1">
