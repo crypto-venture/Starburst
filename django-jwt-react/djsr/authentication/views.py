@@ -5,6 +5,8 @@ from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.forms.models import model_to_dict
+from django.http import JsonResponse
+from django.core import serializers
 
 from .serializers import CustomUserSerializer
 from .models import CustomUser
@@ -18,6 +20,8 @@ import json
 from sklearn.preprocessing import MinMaxScaler
 import os
 from django.conf import settings
+
+from dateutil import tz
 
 # Create your views here.
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -101,11 +105,14 @@ class BTCPredictions(APIView):
 
         prediction = df_predict.to_dict()
         finalDict = {}
+        to_zone = tz.gettz('America/Los Angeles')
+
         for k in list(prediction['Prediction'].keys()):
-            finalDict[str(k)] = prediction['Prediction'][k]
-        return Response({
-                "Data" : finalDict
-            })
+            newK = k.to_pydatetime()
+            newK = newK.astimezone(to_zone).strftime('%I %p')
+            finalDict[newK] = '%.2f'%prediction['Prediction'][k]
+
+        return JsonResponse(finalDict, status=status.HTTP_200_OK)
 
 
 
