@@ -8,7 +8,7 @@ import * as actions from '../actions';
 const DiscussionFormReview = ({
   onCancel,
   formValues,
-  submitDiscussion,
+  createDiscussion,
   history,
 }) => {
   const reviewFields = _.map(formFields, ({ name, label }) => {
@@ -39,11 +39,11 @@ const DiscussionFormReview = ({
         <i className="material-icons right">backspace</i>
       </button>
       <button
-        onClick={() => submitDiscussion(formValues, history)}
+        onClick={() => createDiscussion(formValues, history)}
         className="green btn-flat right white-text"
       >
         Post Discussion
-        <i className="material-icons right">email</i>
+        <i className="material-icons right">send</i>
       </button>
     </div>
   );

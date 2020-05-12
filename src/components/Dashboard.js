@@ -8,7 +8,12 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h4 className="center">Discussion Feed</h4>
+        <h4 className="center">
+          Discussion Feed{' '}
+          {/* <span role="img" aria-label="jsx-a11y/accessible-emoji">
+            💬
+          </span> */}
+        </h4>
         <Discussion />
         <div className="fixed-action-btn">
           <Link to="/discussions/create" className="btn-floating btn-large red">

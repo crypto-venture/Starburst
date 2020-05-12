@@ -4,12 +4,15 @@ import { reduxForm, Field } from 'redux-form';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
 import M from 'materialize-css';
+import { connect } from 'react-redux';
 import ProfileInfo from './ProfileInfo';
+import { fetchUser } from '../actions';
 
 class Profile extends Component {
   componentDidMount() {
     // Auto initialize all the things!
     M.AutoInit();
+    this.props.fetchUser();
   }
 
   renderModal() {
@@ -39,7 +42,7 @@ class Profile extends Component {
       paddingTop: 20,
       paddingBottom: 20,
     };
-
+    console.log(this.props.auth);
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3" style={registerStyle}>
         <div className="card-panel grey lighten-5 z-depth-1">
@@ -52,10 +55,7 @@ class Profile extends Component {
               ></img>
             </div>
             <div className="col s9">
-              <span className="black-text">
-                Hi! My name is Bobby and I am a swag boy. I have a hat that says
-                DOPE.
-              </span>
+              <span className="black-text">{}</span>
             </div>
             <div className="col s1">
               <a
@@ -73,13 +73,17 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        <ProfileInfo />
+        <ProfileInfo author={this.props.auth} />
       </div>
     );
   }
 }
 
-// Profile = connect(null, { onRegister })(withRouter(Profile));
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+Profile = connect(mapStateToProps, { fetchUser })(Profile);
 
 //options object inside redux form helper
 export default reduxForm({

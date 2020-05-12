@@ -62,8 +62,9 @@ class Bitcoin extends Component {
       <div className="card darken-1">
         <div className="card-content">
           <span className="card-title center">The Prophecy</span>
-          <p className="center" style={{ paddingBottom: 30 }}>
-            Our Predicted BTC Price for the next 5 hours
+          <p className="center" style={{ paddingBottom: 10 }}>
+            Our Predicted BTC Price for the next 5 hours. Click on a time below
+            to see forecasted price!
           </p>
           <Price />
         </div>

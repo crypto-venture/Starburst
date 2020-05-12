@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import FileInput from './FileInput';
 import TextArea from './TextArea';
+import { connect } from 'react-redux';
 import M from 'materialize-css';
+import { fetchUser } from '../actions';
 
 class ProfileInfo extends Component {
   componentDidMount() {
     // Auto initialize all the things!
     M.AutoInit();
+    this.props.fetchUser();
   }
 
   renderModal() {
@@ -38,16 +41,16 @@ class ProfileInfo extends Component {
       paddingTop: 0,
       paddingBottom: 50,
     };
-
+    console.log(this.props.auth);
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3" style={registerStyle}>
         <div className="card-panel grey lighten-5 z-depth-1">
           <div className="row valign-wrapper">
             <div className="col s12">
               <h4>Email</h4>
-              <p>john.doe@gmail.com</p>
+              <p>maan.vs97@gmail.com</p>
               <h4>Username</h4>
-              <p>bobby_swag</p>
+              <p>cryptoinvestor</p>
               <h4>Password</h4>
               <p>********</p>
               <a className="btn waves-light modal-trigger" href="#modal2">
@@ -67,7 +70,7 @@ class ProfileInfo extends Component {
   }
 }
 
-// ProfileInfo = connect(null, { onRegister })(withRouter(ProfileInfo));
+ProfileInfo = connect(null, { fetchUser })(ProfileInfo);
 
 //options object inside redux form helper
 export default reduxForm({

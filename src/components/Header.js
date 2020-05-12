@@ -14,10 +14,15 @@ class Header extends Component {
           </li>
         );
       default:
-        if (this.props.auth.access) {
+        if (this.props.auth.access || this.props.auth.username) {
           return [
             <li key="1">
-              <Link to="/btc">Bitcoin</Link>
+              <Link to="/btc">
+                {/* <span role="img" aria-label="jsx-a11y/accessible-emoji">
+                  ₿
+                </span>{' '} */}
+                Bitcoin
+              </Link>
             </li>,
             <li key="3">
               <Link to="/profile">

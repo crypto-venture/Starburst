@@ -9,7 +9,7 @@ import Profile from './Profile';
 import Bitcoin from './Bitcoin';
 import Error from './Error';
 import CreateDiscussion from './CreateDiscussion';
-import { onLogin, fetchUser } from '../actions';
+import { fetchUser } from '../actions';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
