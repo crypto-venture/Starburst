@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "materialize-css": "^1.0.0",
     "moment": "^2.25.3",
-    "qs": "^6.9.3",
+    "qs": "^6.9.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
